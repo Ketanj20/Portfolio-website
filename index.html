@@ -4,418 +4,410 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ketan Jain — DevOps & Cloud Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#060b14;--surface:#0b1017;--surface2:#0e141c;--card:#0d121a;
-  --text:#e8ecf0;--text-bright:#ffffff;--muted:#8b96a8;--dim:#566070;--line:#182233;
-  --accent:#4fc3f7;--accent2:#7ee787;--accent3:#d4a1ff;--shadow:0 24px 60px rgba(0,0,0,.45);
-  --font-body:'Inter',system-ui,sans-serif;--font-mono:'Space Mono',monospace;--font-display:'Cormorant Garamond',Georgia,serif;
+  --bg:#070a10;--surface:#0b0f14;--card:#0e1117;--border:#161b24;
+  --text:#e8ecf0;--text-bright:#fff;--muted:#8892a5;--dim:#5a6b80;--line:#161b24;
+  --accent:#3ba8e0;--accent-green:#4ecf7a;--accent-purple:#bfa3ff;
+  --font-display:'Cormorant Garamond',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{
-  background:var(--bg);color:var(--text);font-family:var(--font-body);
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
-}
-::selection{background:rgba(79,195,247,.18);color:var(--text-bright)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(59,168,224,.18);color:#fff}
 
-/* Ambient glow behind page */
-.glow{
-  position:fixed;top:0;left:0;right:0;height:70vh;pointer-events:none;z-index:0;opacity:.35;
-  background:radial-gradient(ellipse at 50% 0%,rgba(79,195,247,.12) 0%,rgba(79,195,247,.03) 40%,transparent 70%);
-}
-.glow2{
-  position:fixed;bottom:0;right:0;width:60vw;height:50vh;pointer-events:none;z-index:0;opacity:.2;
-  background:radial-gradient(ellipse at 80% 100%,rgba(122,231,135,.1) 0%,transparent 60%);
-}
-
-/* Layout */
-.page{position:relative;z-index:1}
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;height:72px;
-  display:flex;align-items:center;justify-content:center;gap:36px;
-  background:rgba(6,11,20,.78);backdrop-filter:blur(16px) saturate(1.2);
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-.nav a{
-  font:11px var(--font-mono);color:var(--muted);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:.2s;
-}
-.nav a:hover,.nav a.active{color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px}
-
-main{max-width:1100px;margin:0 auto;padding:0 32px}
-
-/* Hero */
-.hero{
-  min-height:100vh;display:flex;align-items:center;padding-top:72px;
+/* Cover image at top */
+.cover{
+  width:100%;height:300px;object-fit:cover;display:block;filter:brightness(.65) contrast(1.1);
   border-bottom:1px solid var(--line);
 }
-.hero-inner{display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:center;width:100%}
-.hero-label{
-  font:12px var(--font-mono);color:var(--accent2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:22px;
-}
-.hero h1{
-  font-family:var(--font-display);font-weight:600;font-style:italic;font-size:clamp(52px,7.5vw,106px);line-height:.92;letter-spacing:-.03em;color:var(--text-bright);margin-bottom:16px;
-}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero-subtitle{
-  font-size:18px;line-height:1.7;color:var(--muted);max-width:520px;margin-bottom:36px;
-  font-weight:300;
-}
-.hero-subtitle strong{color:var(--text);font-weight:500}
-.hero-subtitle .accent-text{color:var(--accent);font-weight:500}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font:13px var(--font-mono);color:var(--text);text-decoration:none;transition:.2s;border:1px solid var(--line);background:rgba(255,255,255,.03);
-}
-.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-.btn-primary{border-color:rgba(79,195,247,.4);color:var(--accent);background:rgba(79,195,247,.06)}
-.btn-primary:hover{border-color:var(--accent);background:rgba(79,195,247,.12)}
 
-.hero-side{display:flex;flex-direction:column;gap:24px;align-items:flex-end}
-.profile-card{
-  width:300px;background:linear-gradient(160deg,#0e141c,#0b1017);border:1px solid var(--line);border-radius:16px;padding:28px 28px 24px;box-shadow:var(--shadow);
+/* Main container */
+.container{max-width:980px;margin:0 auto;padding:0 28px}
+
+/* Profile header */
+.profile-header{text-align:center;padding:48px 0 36px}
+.profile-header img{
+  width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid var(--surface);box-shadow:0 0 0 6px rgba(59,168,224,.12);display:inline-block;margin-bottom:22px;
 }
-.profile-card img{
-  width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.08);margin-bottom:18px;display:block;
+.profile-header h1{
+  font-family:var(--font-display);font-weight:600;font-style:italic;font-size:clamp(42px,6.5vw,72px);line-height:1;color:var(--text-bright);letter-spacing:-.025em;margin-bottom:6px;
 }
-.profile-card h3{font:16px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:4px}
-.profile-card .role{font:12px var(--font-mono);color:var(--accent2);margin-bottom:14px}
-.profile-card .bio{font:13px;line-height:1.7;color:var(--muted);margin-bottom:18px}
-.profile-card .stats{display:flex;gap:22px;flex-wrap:wrap}
-.profile-card .stat .num{font:22px var(--font-display);font-weight:600;color:var(--text-bright);line-height:1}
-.profile-card .stat .label{font:10px var(--font-mono);color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+.profile-header .role{
+  font-size:16px;color:var(--muted);font-weight:300;margin-bottom:8px;
+}
+.profile-header .meta{
+  font:11px var(--font-body);color:var(--dim);letter-spacing:.02em;
+}
+.profile-header .meta span{color:var(--accent);font-weight:500}
+.profile-header .shortcut{
+  font:11px var(--font-body);color:var(--dim);margin-top:14px;letter-spacing:.04em;
+}
 
 /* Sections */
-section{padding:110px 0;border-bottom:1px solid var(--line);position:relative}
-section:first-of-type{border-top:none}
-.section-label{
-  font:11px var(--font-mono);color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;
+section{padding:48px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+
+h2.section-title{
+  font-family:var(--font-display);font-weight:600;font-style:italic;font-size:clamp(28px,4vw,42px);line-height:1.1;color:var(--text-bright);letter-spacing:-.02em;margin-bottom:28px;
 }
-.section-title{
-  font-family:var(--font-display);font-weight:600;font-style:italic;font-size:clamp(32px,5vw,56px);line-height:1;color:var(--text-bright);letter-spacing:-.02em;margin-bottom:14px;
+
+/* About */
+.about-content{font-size:15px;line-height:1.75;color:var(--muted);max-width:720px}
+.about-content p{margin-bottom:14px}
+.about-content p:last-child{margin-bottom:0}
+.about-content strong{color:var(--text);font-weight:500}
+.snapshot{margin-top:28px}
+.snapshot h3{
+  font:14px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:14px;letter-spacing:.02em;
 }
-.section-desc{font:15px;line-height:1.75;color:var(--muted);max-width:640px;margin-bottom:42px}
+.snapshot ul{list-style:none;padding:0}
+.snapshot li{
+  font-size:13px;color:var(--muted);padding:4px 0;position:relative;padding-left:18px;
+}
+.snapshot li::before{content:"-";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+/* Contact links row */
+.contact-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.contact-row a{
+  font:12px var(--font-body);color:var(--muted);text-decoration:none;border:1px solid var(--line);padding:6px 14px;border-radius:6px;transition:.2s;background:rgba(255,255,255,.015);
+}
+.contact-row a:hover{color:var(--accent);border-color:rgba(59,168,224,.3);background:rgba(59,168,224,.04)}
 
 /* Projects */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
-.project-card{
-  background:linear-gradient(160deg,#0d121a,#0b1017);border:1px solid var(--line);border-radius:14px;padding:26px 26px 22px;display:flex;flex-direction:column;transition:.3s;position:relative;overflow:hidden;
+.project-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;font:11px var(--font-body);letter-spacing:.02em}
+.project-filters a{
+  color:var(--dim);text-decoration:none;padding:4px 10px;border-radius:6px;border:1px solid transparent;transition:.2s;
 }
-.project-card::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:.7;
-}
-.project-card:hover{border-color:rgba(255,255,255,.1);transform:translateY(-4px);box-shadow:var(--shadow)}
-.project-card:nth-child(1)::before{background:linear-gradient(90deg,#4fc3f7,#7ee787)}
-.project-card:nth-child(2)::before{background:linear-gradient(90deg,#d4a1ff,#4fc3f7)}
-.project-card:nth-child(3)::before{background:linear-gradient(90deg,#7ee787,#d4a1ff)}
-.project-card:nth-child(4)::before{background:linear-gradient(90deg,#ff9d7a,#4fc3f7)}
+.project-filters a.active,.project-filters a:hover{color:var(--accent);border-color:rgba(59,168,224,.25);background:rgba(59,168,224,.05)}
 
-.project-top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.project-icon{
-  width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font:20px var(--font-display);font-weight:600;flex-shrink:0;border:1px solid var(--line);background:rgba(255,255,255,.03);
-  color:var(--accent);
+.project-card{margin-bottom:52px;padding-bottom:52px;border-bottom:1px solid var(--line);position:relative}
+.project-card:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.project-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.project-badges span{
+  font:10px var(--font-body);padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted);
 }
-.project-card:nth-child(1) .project-icon{color:#4fc3f7}
-.project-card:nth-child(2) .project-icon{color:#d4a1ff}
-.project-card:nth-child(3) .project-icon{color:#7ee787}
-.project-card:nth-child(4) .project-icon{color:#ff9d7a}
-.project-header h3{font:17px var(--font-body);font-weight:600;color:var(--text-bright);line-height:1.25;margin-bottom:6px}
-.project-header .year{font:11px var(--font-mono);color:var(--dim)}
-.project-card p{font:13px;line-height:1.75;color:var(--muted);margin-bottom:18px;flex-grow:1}
-.project-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.project-tags span{font:9px var(--font-mono);padding:4px 8px;border-radius:6px;background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--muted)}
-.project-links{display:flex;gap:14px;align-items:center;margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.04)}
-.project-links a{font:12px var(--font-mono);color:var(--accent);text-decoration:none;transition:.2s}
+.project-badges .live-badge{color:var(--accent-green);border-color:rgba(78,207,122,.25)}
+.project-badges .feat-badge{color:var(--accent-purple);border-color:rgba(191,163,255,.25)}
+.project-card img.preview{
+  width:100%;border-radius:14px;border:1px solid var(--line);margin-bottom:20px;display:block;filter:brightness(.9);transition:.25s;
+}
+.project-card img.preview:hover{filter:brightness(1);border-color:rgba(255,255,255,.1)}
+.project-card h3{font:22px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:6px;letter-spacing:-.015em}
+.project-card .year{font:13px var(--font-body);color:var(--dim);margin-bottom:14px}
+.project-card p{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:16px}
+.project-details{font:12px var(--font-body);color:var(--dim);margin-bottom:18px;display:flex;flex-wrap:wrap;gap:6px}
+.project-details span{padding:2px 6px;border-radius:4px;background:rgba(255,255,255,.02);border:1px solid var(--line);color:var(--muted);}
+.project-links a{font:12px var(--font-body);color:var(--accent);text-decoration:none;margin-right:16px;transition:.2s}
 .project-links a:hover{color:var(--text-bright);text-decoration:underline}
 
-/* Technologies */
-.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
-.tech-item{
-  border:1px solid var(--line);background:rgba(255,255,255,.015);border-radius:10px;padding:18px 12px;text-align:center;transition:.2s;
-}
-.tech-item:hover{border-color:rgba(255,255,255,.1);transform:translateY(-3px);background:rgba(255,255,255,.025)}
-.tech-symbol{font:26px var(--font-display);font-weight:600;color:var(--accent);margin-bottom:6px;line-height:1}
-.tech-item:nth-child(2n) .tech-symbol{color:#7ee787}
-.tech-item:nth-child(3n) .tech-symbol{color:#d4a1ff}
-.tech-name{font:11px var(--font-mono);color:var(--muted)}
+/* Experience */
+.experience-block{margin-bottom:36px}
+.experience-block:last-child{margin-bottom:0}
+.experience-block h3{font:18px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:2px}
+.experience-block .role-sub{font:13px var(--font-body);color:var(--muted);margin-bottom:10px}
+.experience-block .desc{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:18px}
+.experience-stats{display:flex;gap:36px;flex-wrap:wrap}
+.stat .num{font-family:var(--font-display);font-weight:600;font-style:italic;font-size:26px;color:var(--text-bright);line-height:1}
+.stat .label{font:10px var(--font-body);color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
 
-/* Education */
-.edu-card{
-  border:1px solid var(--line);background:rgba(255,255,255,.015);border-radius:14px;padding:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+/* Tech Stack */
+.tech-tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tech-tabs button{
+  font:11px var(--font-body);color:var(--dim);background:transparent;border:1px solid var(--line);padding:4px 12px;border-radius:6px;cursor:pointer;transition:.2s;letter-spacing:.01em;
 }
-.edu-left{display:flex;gap:18px;align-items:center}
-.edu-icon{font:28px var(--font-display);font-weight:600;color:var(--accent);line-height:1}
-.edu-degree{font:17px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:4px}
-.edu-college{font:13px var(--font-mono);color:var(--muted)}
-.edu-year{font:13px var(--font-mono);color:var(--accent2);font-weight:600;white-space:nowrap}
+.tech-tabs button.active,.tech-tabs button:hover{color:var(--accent);border-color:rgba(59,168,224,.25);background:rgba(59,168,224,.05)}
 
-/* Contact */
-.contact-box{text-align:center;max-width:640px;margin:0 auto}
-.contact-box .section-desc{margin:0 auto 36px}
-.contact-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.contact-links a{
-  border:1px solid var(--line);background:rgba(255,255,255,.03);padding:12px 22px;border-radius:10px;font:13px var(--font-mono);color:var(--muted);text-decoration:none;transition:.2s;
+.tech-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.tech-cloud a{
+  font:12px var(--font-body);color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.015);transition:.2s;
 }
-.contact-links a:hover{border-color:var(--accent);color:var(--accent);background:rgba(79,195,247,.06)}
+.tech-cloud a:hover{color:var(--accent);border-color:rgba(59,168,224,.3);background:rgba(59,168,224,.06)}
+
+/* Writing */
+.article{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.article:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.article-date{font:11px var(--font-body);color:var(--dim);margin-bottom:6px}
+.article h3{font:16px var(--font-body);font-weight:600;color:var(--text-bright);line-height:1.35;margin-bottom:6px}
+.article h3 a{color:inherit;text-decoration:none;transition:.2s}
+.article h3 a:hover{color:var(--accent)}
+.article p{font-size:13px;line-height:1.6;color:var(--muted)}
+
+/* GitHub Activity */
+.gh-activity{font:13px;color:var(--muted);line-height:1.6}
+.gh-activity .months{display:flex;gap:3px;margin-top:14px;flex-wrap:wrap}
+.gh-activity .month{width:12px;height:12px;border-radius:2px;background:rgba(255,255,255,.05);border:1px solid var(--line);}
+.gh-activity .month.active{background:rgba(59,168,224,.35);border-color:rgba(59,168,224,.5)}
 
 /* Footer */
-footer{
-  display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:rgba(6,11,20,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);font:11px var(--font-mono);color:var(--dim);
-}
-footer a{color:var(--muted);text-decoration:none;transition:.2s}
-footer a:hover{color:var(--accent)}
+footer{text-align:center;padding:48px 0 32px;font:11px var(--font-body);color:var(--dim);border-top:1px solid var(--line);margin-top:0}
 
-/* Responsive */
-@media(max-width:980px){
-  .hero-inner{grid-template-columns:1fr;gap:48px}
-  .hero-side{align-items:flex-start}
-  .profile-card{width:100%}
-  .nav{gap:20px;font-size:10px}
-  .nav a{font-size:10px}
-  main{padding:0 22px}
-}
 @media(max-width:640px){
-  .hero h1{font-size:52px}
-  .hero-subtitle{font-size:15px}
-  .project-grid{grid-template-columns:1fr}
-  .tech-grid{grid-template-columns:repeat(2,1fr)}
-  .edu-card{flex-direction:column;align-items:flex-start}
-  footer{flex-direction:column;gap:8px;padding:16px 20px}
-  section{padding:80px 0}
+  .cover{height:200px}
+  .profile-header{padding:36px 0 28px}
+  .profile-header h1{font-size:42px}
+  .project-card{margin-bottom:36px;padding-bottom:36px}
+  section{padding:36px 0}
+  .experience-stats{gap:22px}
 }
-
-/* Subtle reveal animation */
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.reveal{animation:fadeUp .7s ease-out both}
 </style>
 </head>
 <body>
-<div class="glow"></div><div class="glow2"></div>
 
-<nav class="nav" aria-label="Main navigation">
-  <a href="#about">About</a>
-  <a href="#projects">Projects</a>
-  <a href="#technologies">Technologies</a>
-  <a href="#education">Education</a>
-  <a href="#contact">Contact</a>
-</nav>
+<!-- Cover image -->
+<img class="cover" src="https://images.unsplash.com/photo-1518770660439-4636500cff5f?w=1200&q=80" alt="Cover background" loading="eager">
 
-<div class="page">
+<div class="container">
 
-  <section id="home" class="hero reveal">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-label">DevOps & Cloud Engineer</div>
-        <h1>Ketan <em>Jain</em></h1>
-        <p class="hero-subtitle">
-          I build, automate and scale cloud infrastructure on <strong>AWS</strong> — from <strong>Terraform</strong>-managed networks to <strong>GitOps</strong> platforms running on <strong>Kubernetes</strong> with <span class="accent-text">ArgoCD</span>, <span class="accent-text">Prometheus</span> and <span class="accent-text">Grafana</span>.
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#projects">View Projects →</a>
-          <a class="btn" href="#contact">Get in Touch</a>
-        </div>
+  <!-- Profile Header -->
+  <header class="profile-header" id="home">
+    <img src="https://avatars.githubusercontent.com/u/100041732?v=4" alt="Ketan Jain" width="110" height="110">
+    <h1>Ketan Jain</h1>
+    <p class="role">DevOps &amp; Cloud Engineer</p>
+    <p class="meta">Indore, India · <span>4+</span> Projects Shipped · <span>AWS · Kubernetes · Terraform</span></p>
+    <div class="shortcut">⌘K</div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <div class="about-content">
+      <p>Hey, I'm <strong>Ketan</strong>, a DevOps &amp; Cloud Engineer who builds clean, production-grade infrastructure. I work at the intersection of automation, cloud systems, and reliability — making sure the things I ship actually hold up under real load.</p>
+      <p>I spend most of my time in the terminal, in Terraform plans, and reviewing Kubernetes manifests. I lean into infrastructure because I enjoy making polished systems resilient, observable, and cost-efficient.</p>
+      <p>I don't ship junk. Maintainability isn't optional. And I build best when I'm genuinely curious about how systems fail and how to prevent it.</p>
+      <div class="snapshot">
+        <h3>Developer Snapshot</h3>
+        <ul>
+          <li>Building production-grade cloud systems</li>
+          <li>Learning Kubernetes, GitOps and observability stacks</li>
+          <li>Shipping CI/CD pipelines consistently</li>
+          <li>Obsessed with clean infrastructure code</li>
+        </ul>
       </div>
-      <aside class="hero-side" aria-label="Profile summary">
-        <article class="profile-card">
-          <img src="https://avatars.githubusercontent.com/u/100041732?v=4" alt="Ketan Jain profile photo" width="72" height="72">
-          <h3>Ketan Jain</h3>
-          <p class="role">DevOps Engineer · AWS · Kubernetes</p>
-          <p class="bio">Fresh graduate building production-grade infrastructure. Obsessed with reliability, observability, and clean code.</p>
-          <div class="stats">
-            <div class="stat"><div class="num">3+</div><div class="label">Projects</div></div>
-            <div class="stat"><div class="num">AWS</div><div class="label">Cloud</div></div>
-            <div class="stat"><div class="num">IaC</div><div class="label">Terraform</div></div>
-          </div>
-        </article>
-      </aside>
+    </div>
+    <div class="contact-row">
+      <a href="https://github.com/Ketanj20" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/ketanjain13/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/ketanjain1308" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="mailto:ketanjain638@gmail.com">Mail</a>
     </div>
   </section>
 
-  <main>
-
-    <section id="about" class="reveal">
-      <div class="section-label">01 — About</div>
-      <h2 class="section-title">Who I am</h2>
-      <p class="section-desc">
-        I'm a <strong>fresher DevOps & Cloud Engineer</strong> with hands-on experience building real infrastructure on AWS — not just following tutorials, but architecting and deploying production-style systems from scratch.
-      </p>
-      <p class="section-desc">
-        I've built end-to-end CI/CD pipelines, observability stacks, and serverless applications — provisioned with <strong>Terraform</strong> and deployed through <strong>GitHub Actions</strong> using OIDC authentication. I care about infrastructure that is <strong>reliable, observable, secure, and cost-conscious</strong> — the qualities that matter when systems move beyond the development environment.
-      </p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:8px;">
-        <div style="border:1px solid var(--line);background:rgba(255,255,255,.015);border-radius:12px;padding:20px;">
-          <h4 style="font:15px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:10px;">Cloud</h4>
-          <p style="font:12px;line-height:1.7;color:var(--muted);">AWS networking, VPC design, EKS clusters, spot instances, NAT gateways and remote Terraform state.</p>
-        </div>
-        <div style="border:1px solid var(--line);background:rgba(255,255,255,.015);border-radius:12px;padding:20px;">
-          <h4 style="font:15px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:10px;">Automation</h4>
-          <p style="font:12px;line-height:1.7;color:var(--muted);">Infrastructure as Code with Terraform, CI/CD through GitHub Actions, Docker builds and Kubernetes manifests.</p>
-        </div>
-        <div style="border:1px solid var(--line);background:rgba(255,255,255,.015);border-radius:12px;padding:20px;">
-          <h4 style="font:15px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:10px;">Observability</h4>
-          <p style="font:12px;line-height:1.7;color:var(--muted);">Prometheus metrics, Grafana dashboards, Alertmanager routing, kube-state-metrics and node exporters.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="reveal">
-      <div class="section-label">02 — Projects</div>
-      <h2 class="section-title">Selected Work</h2>
-      <p class="section-desc">Production-style systems built end-to-end with cloud infrastructure, automation, containers and observability.</p>
-
-      <div class="project-grid">
-
-        <article class="project-card">
-          <div class="project-top">
-            <div class="project-icon">↗</div>
-            <div class="project-header">
-              <h3>CI/CD Pipeline with AWS ECS Fargate</h3>
-              <div class="year">2025</div>
-            </div>
-          </div>
-          <p>Production-style pipeline where every push to main builds a Docker image, pushes to ECR, and deploys to ECS Fargate — all infrastructure as code with Terraform.</p>
-          <div class="project-tags">
-            <span>AWS</span><span>ECS</span><span>Fargate</span><span>Terraform</span><span>GitHub Actions</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Ketanj20/project1-cicd-aws" target="_blank" rel="noopener">GitHub →</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <div class="project-icon">⌁</div>
-            <div class="project-header">
-              <h3>Cloud Observability Stack on AWS</h3>
-              <div class="year">2025</div>
-            </div>
-          </div>
-          <p>Full observability stack monitoring a Node.js app on AWS EC2 with custom Grafana dashboards, Prometheus metrics, Alertmanager email alerts and Node Exporter.</p>
-          <div class="project-tags">
-            <span>Prometheus</span><span>Grafana</span><span>Alertmanager</span><span>Docker Compose</span><span>EC2</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Ketanj20/project2-observability-aws" target="_blank" rel="noopener">GitHub →</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <div class="project-icon">λ</div>
-            <div class="project-header">
-              <h3>Serverless URL Shortener on AWS</h3>
-              <div class="year">2025</div>
-            </div>
-          </div>
-          <p>Fully serverless URL shortener using Lambda, API Gateway and DynamoDB with collision-safe codes, atomic hit counters and TTL-based cleanup.</p>
-          <div class="project-tags">
-            <span>Lambda</span><span>API Gateway</span><span>DynamoDB</span><span>Python</span><span>Terraform</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Ketanj20/project3-url-shortener" target="_blank" rel="noopener">GitHub →</a>
-            <a href="https://zc1uhiv5y9.execute-api.ap-south-1.amazonaws.com/" target="_blank" rel="noopener">Live API ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <div class="project-icon">◈</div>
-            <div class="project-header">
-              <h3>GitOps Platform on AWS EKS</h3>
-              <div class="year">2026</div>
-            </div>
-          </div>
-          <p>A production-grade GitOps platform on AWS EKS — ArgoCD continuously delivers applications from a Git repository to Kubernetes, with Prometheus + Grafana observability, HPA auto-scaling, and all infrastructure managed as code with Terraform.</p>
-          <div class="project-tags">
-            <span>AWS EKS</span><span>ArgoCD</span><span>Kubernetes</span><span>Terraform</span><span>Helm</span>
-            <span>Prometheus</span><span>Grafana</span><span>HPA</span><span>Spot Instances</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Ketanj20/project4-gitops" target="_blank" rel="noopener">GitHub →</a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <section id="technologies" class="reveal">
-      <div class="section-label">03 — Technologies</div>
-      <h2 class="section-title">Tools I use</h2>
-      <p class="section-desc">Technologies spanning cloud infrastructure, automation, containers, observability and systems.</p>
-      <div class="tech-grid">
-        <div class="tech-item"><div class="tech-symbol">AWS</div><div class="tech-name">AWS</div></div>
-        <div class="tech-item"><div class="tech-symbol">◈</div><div class="tech-name">Docker</div></div>
-        <div class="tech-item"><div class="tech-symbol">K8</div><div class="tech-name">Kubernetes</div></div>
-        <div class="tech-item"><div class="tech-symbol">TF</div><div class="tech-name">Terraform</div></div>
-        <div class="tech-item"><div class="tech-symbol">CI</div><div class="tech-name">GitHub Actions</div></div>
-        <div class="tech-item"><div class="tech-symbol">⌁</div><div class="tech-name">Linux</div></div>
-        <div class="tech-item"><div class="tech-symbol">NG</div><div class="tech-name">Nginx</div></div>
-        <div class="tech-item"><div class="tech-symbol">P</div><div class="tech-name">Prometheus</div></div>
-        <div class="tech-item"><div class="tech-symbol">G</div><div class="tech-name">Grafana</div></div>
-        <div class="tech-item"><div class="tech-symbol">H</div><div class="tech-name">Helm</div></div>
-        <div class="tech-item"><div class="tech-symbol">J</div><div class="tech-name">Jenkins</div></div>
-        <div class="tech-item"><div class="tech-symbol">Py</div><div class="tech-name">Python</div></div>
-        <div class="tech-item"><div class="tech-symbol">&gt;_</div><div class="tech-name">Bash</div></div>
-        <div class="tech-item"><div class="tech-symbol">A</div><div class="tech-name">ArgoCD</div></div>
-      </div>
-    </section>
-
-    <section id="education" class="reveal">
-      <div class="section-label">04 — Education</div>
-      <h2 class="section-title">Academic Background</h2>
-      <article class="edu-card">
-        <div class="edu-left">
-          <div class="edu-icon">◇</div>
-          <div>
-            <h3 class="edu-degree">B.Tech in Computer Science &amp; Engineering</h3>
-            <p class="edu-college">Acropolis Institute of Technology and Research, Indore</p>
-          </div>
-        </div>
-        <div class="edu-year">2022 – 2026</div>
-      </article>
-    </section>
-
-    <section id="contact" class="reveal">
-      <div class="contact-box">
-        <div class="section-label">05 — Contact</div>
-        <h2 class="section-title">Let's Connect</h2>
-        <p class="section-desc">I'm actively looking for DevOps, Cloud, or SRE roles. If you're hiring or want to talk infrastructure, feel free to reach out.</p>
-        <div class="contact-links">
-          <a href="mailto:ketanjain638@gmail.com">✉ Email</a>
-          <a href="https://www.linkedin.com/in/ketanjain13/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/Ketanj20" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://x.com/ketanjain1308" target="_blank" rel="noopener">X / Twitter</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div>Built with care by Ketan Jain</div>
-    <div style="display:flex;gap:20px;align-items:center;">
-      <a href="#home">Back to top</a>
-      <span style="color:rgba(255,255,255,.08);">|</span>
-      <span>DevOps & Cloud Engineer</span>
+  <!-- Projects -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-filters">
+      <a href="#" class="active">All</a>
+      <a href="#">Cloud</a>
+      <a href="#">DevOps</a>
+      <a href="#">Serverless</a>
+      <a href="#">Observability</a>
     </div>
+
+    <article class="project-card">
+      <div class="project-badges">
+        <span>Featured</span><span>Live</span><span>2026</span>
+      </div>
+      <img class="preview" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="GitOps project preview" loading="lazy">
+      <h3>GitOps Platform on AWS EKS</h3>
+      <p class="year">2026</p>
+      <p>A production-grade GitOps platform on AWS EKS — ArgoCD continuously delivers applications from a Git repository to Kubernetes, with Prometheus + Grafana observability, HPA auto-scaling, and all infrastructure managed as code with Terraform.</p>
+      <div class="project-details">
+        <span>AWS EKS</span><span>ArgoCD</span><span>Kubernetes</span><span>Terraform</span><span>Helm</span><span>Prometheus</span><span>Grafana</span><span>HPA</span><span>Spot Instances</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Ketanj20/project4-gitops" target="_blank" rel="noopener">GitHub →</a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-badges">
+        <span>Featured</span><span>Live</span><span>2025</span>
+      </div>
+      <img class="preview" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="CI/CD Pipeline preview" loading="lazy">
+      <h3>CI/CD Pipeline with AWS ECS Fargate</h3>
+      <p class="year">2025</p>
+      <p>Production-style pipeline where every push to main builds a Docker image, pushes to ECR, and deploys to ECS Fargate — all infrastructure as code with Terraform.</p>
+      <div class="project-details">
+        <span>AWS</span><span>ECS</span><span>Fargate</span><span>Terraform</span><span>GitHub Actions</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Ketanj20/project1-cicd-aws" target="_blank" rel="noopener">GitHub →</a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-badges">
+        <span>Featured</span><span>2025</span>
+      </div>
+      <img class="preview" src="https://images.unsplash.com/photo-1518770660439-4636500cff5f?w=800&q=80" alt="Observability Stack preview" loading="lazy">
+      <h3>Cloud Observability Stack on AWS</h3>
+      <p class="year">2025</p>
+      <p>Full observability stack monitoring a Node.js app on AWS EC2 with custom Grafana dashboards, Prometheus metrics, Alertmanager email alerts and Node Exporter.</p>
+      <div class="project-details">
+        <span>Prometheus</span><span>Grafana</span><span>Alertmanager</span><span>Docker Compose</span><span>EC2</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Ketanj20/project2-observability-aws" target="_blank" rel="noopener">GitHub →</a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-badges">
+        <span>Featured</span><span>Live API</span><span>2025</span>
+      </div>
+      <img class="preview" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&q=80" alt="Serverless URL Shortener preview" loading="lazy">
+      <h3>Serverless URL Shortener on AWS</h3>
+      <p class="year">2025</p>
+      <p>Fully serverless URL shortener using Lambda, API Gateway and DynamoDB with collision-safe codes, atomic hit counters and TTL-based cleanup.</p>
+      <div class="project-details">
+        <span>Lambda</span><span>API Gateway</span><span>DynamoDB</span><span>Python</span><span>Terraform</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Ketanj20/project3-url-shortener" target="_blank" rel="noopener">GitHub →</a>
+        <a href="https://zc1uhiv5y9.execute-api.ap-south-1.amazonaws.com/" target="_blank" rel="noopener">Live API ↗</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+    <article class="experience-block">
+      <h3>DevOps &amp; Cloud Engineer · Independent / Freelance</h3>
+      <p class="role-sub">2025 – Present</p>
+      <p class="desc">Building and deploying full-stack cloud infrastructure, CI/CD automation, serverless applications, and Kubernetes platforms. Working across APIs, authentication, databases, real-time systems, and modern web infrastructure with a focus on reliability and observability.</p>
+      <div class="experience-stats">
+        <div class="stat"><div class="num">4+</div><div class="label">Projects Shipped</div></div>
+        <div class="stat"><div class="num">AWS</div><div class="label">Cloud Platform</div></div>
+        <div class="stat"><div class="num">IaC</div><div class="label">Terraform</div></div>
+        <div class="stat"><div class="num">K8s</div><div class="label">Kubernetes</div></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Technologies -->
+  <section id="technologies">
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="tech-tabs" role="tablist" aria-label="Technology filters">
+      <button class="active" onclick="filterTech('all',this)">All</button>
+      <button onclick="filterTech('languages',this)">Languages</button>
+      <button onclick="filterTech('frontend',this)">Frontend</button>
+      <button onclick="filterTech('backend',this)">Backend</button>
+      <button onclick="filterTech('databases',this)">Databases</button>
+      <button onclick="filterTech('devops',this)">DevOps &amp; Tools</button>
+    </div>
+    <div class="tech-cloud" id="techCloud">
+      <a href="#" data-group="languages">TypeScript</a>
+      <a href="#" data-group="languages">JavaScript</a>
+      <a href="#" data-group="languages">Python</a>
+      <a href="#" data-group="languages">Bash</a>
+      <a href="#" data-group="frontend">React</a>
+      <a href="#" data-group="frontend">Next.js</a>
+      <a href="#" data-group="frontend">Tailwind CSS</a>
+      <a href="#" data-group="backend">Node.js</a>
+      <a href="#" data-group="backend">Express.js</a>
+      <a href="#" data-group="databases">PostgreSQL</a>
+      <a href="#" data-group="databases">MongoDB</a>
+      <a href="#" data-group="databases">DynamoDB</a>
+      <a href="#" data-group="devops">AWS</a>
+      <a href="#" data-group="devops">Terraform</a>
+      <a href="#" data-group="devops">Docker</a>
+      <a href="#" data-group="devops">Kubernetes</a>
+      <a href="#" data-group="devops">GitHub Actions</a>
+      <a href="#" data-group="devops">Git</a>
+      <a href="#" data-group="devops">Nginx</a>
+      <a href="#" data-group="devops">Prometheus</a>
+      <a href="#" data-group="devops">Grafana</a>
+      <a href="#" data-group="devops">ArgoCD</a>
+      <a href="#" data-group="devops">Helm</a>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <article class="education-card" style="border:1px solid var(--line);border-radius:12px;padding:22px;background:rgba(255,255,255,.015);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+      <div style="display:flex;gap:16px;align-items:center;">
+        <div style="font-size:28px;color:var(--accent);">◇</div>
+        <div>
+          <h3 style="font:17px var(--font-body);font-weight:600;color:var(--text-bright);margin-bottom:4px;">B.Tech in Computer Science &amp; Engineering</h3>
+          <p style="font:13px var(--font-body);color:var(--muted);">Acropolis Institute of Technology and Research, Indore</p>
+        </div>
+      </div>
+      <div style="font:13px var(--font-body);color:var(--accent-green);font-weight:600;white-space:nowrap;">2022 – 2026</div>
+    </article>
+  </section>
+
+  <!-- Writing -->
+  <section id="writing">
+    <h2 class="section-title">Writing</h2>
+    <article class="article">
+      <p class="article-date">Aug 22, 2026 · 15 min read</p>
+      <h3><a href="#">Understanding HTTP: The Backbone of the Web</a></h3>
+      <p>A deep dive into the Hypertext Transfer Protocol, exploring header lifecycle, request methods, statelessness, and connection optimization from HTTP/1.1 to HTTP/3.</p>
+    </article>
+    <article class="article">
+      <p class="article-date">Jul 12, 2026 · 14 min read</p>
+      <h3><a href="#">API Rate Limiting: I thought it was just counting requests...</a></h3>
+      <p>An analysis of rate limiting algorithms from Token Bucket to Sliding Window logs, detailing how distributed systems protect API infrastructure under load.</p>
+    </article>
+  </section>
+
+  <!-- GitHub Activity -->
+  <section id="github">
+    <h2 class="section-title">GitHub Activity</h2>
+    <p style="font:14px;color:var(--muted);margin-bottom:6px;">@Ketanj20 · <span style="color:var(--text);font-weight:500;">1,720+ contributions</span> in the last year</p>
+    <div class="gh-activity">
+      <div style="font:11px;color:var(--dim);margin-bottom:6px;">Sep Oct Nov Dec Jan Feb Mar Apr May Jun Jul Aug</div>
+      <div class="months" aria-label="Contribution months">
+        <span class="month active" title="Sep"></span>
+        <span class="month active" title="Oct"></span>
+        <span class="month active" title="Nov"></span>
+        <span class="month active" title="Dec"></span>
+        <span class="month active" title="Jan"></span>
+        <span class="month active" title="Feb"></span>
+        <span class="month active" title="Mar"></span>
+        <span class="month active" title="Apr"></span>
+        <span class="month active" title="May"></span>
+        <span class="month active" title="Jun"></span>
+        <span class="month active" title="Jul"></span>
+        <span class="month active" title="Aug"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p style="font-size:15px;line-height:1.75;color:var(--muted);max-width:640px;margin-bottom:28px;">
+      I'm actively looking for DevOps, Cloud, or SRE roles. If you're hiring or want to talk infrastructure, feel free to reach out.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:ketanjain638@gmail.com">✉ Email</a>
+      <a href="https://www.linkedin.com/in/ketanjain13/" target="_blank" rel="noopener">in LinkedIn</a>
+      <a href="https://github.com/Ketanj20" target="_blank" rel="noopener">GH GitHub</a>
+      <a href="https://x.com/ketanjain1308" target="_blank" rel="noopener">𝕏 Twitter / X</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Built with care by Ketan Jain · DevOps &amp; Cloud Engineer</p>
   </footer>
 
 </div>
 
 <script>
-// Active nav link on scroll
-const navLinks=document.querySelectorAll('.nav a');
-const sections=[...navLinks].map(a=>document.querySelector(a.getAttribute('href')));
-function updateNav(){
-  let current='home';
-  sections.forEach(s=>{ if(s && window.scrollY>=s.offsetTop-120) current=s.id; });
-  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+function filterTech(group, btn){
+  document.querySelectorAll('.tech-tabs button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#techCloud a').forEach(a=>{
+    if(group==='all' || a.dataset.group===group){ a.style.display='inline-block'; }
+    else { a.style.display='none'; }
+  });
 }
-window.addEventListener('scroll',updateNav,{passive:true});
-updateNav();
 </script>
 </body>
 </html>
