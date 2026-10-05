@@ -6,4 +6,4 @@ Personal portfolio website built with HTML, CSS and JavaScript.
 https://ketanj20.vercel.app
 
 ## Hosting
-GitHub Pages
+Vercel
